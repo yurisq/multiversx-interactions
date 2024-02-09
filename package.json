@@ -1,0 +1,71 @@
+{
+  "name": "multiversx-interactions",
+  "displayName": "MultiversX Interactions",
+  "description": "",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+		"Programming Languages",
+		"Extension Packs",
+		"Debuggers",
+		"Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "multiversx.runContractSnippet",
+        "title": "Run Contract Snippet",
+				"category": "multiversx"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "multiversx.runContractSnippet",
+          "when": "explorerResourceIsFolder && resourceFilename != output && resourceFilename != debug && resourceFilename != target && resourceFilename != js-snippets",
+					"group": "multiversx"
+        },
+				{
+					"command": "multiversx.runContractSnippet",
+					"when": "resourceFilename == multiversx.json",
+					"group": "multiversx"
+				}
+      ],
+      "commandPalette": [
+        {
+          "command": "multiversx.runContractSnippet",
+          "when": "false"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "multiversx.runContractSnippet",
+          "when": "view == smartContracts && viewItem == contract"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
+  }
+}
